@@ -14,6 +14,36 @@ namespace BlogMvcApp.Controllers
     {
         private BlogContext db = new BlogContext();
 
+        public ActionResult List(int? id, string q)
+        {
+            var blogs = db.Blogs
+                    .Where(i => i.Confirmation == true)
+                    .Select(i => new BlogModel()
+                    {
+                        Id = i.Id,
+                        Title = i.Title.Length > 100 ? i.Title.Substring(0, 97) + "..." : i.Title,
+                        Comment = i.Comment,
+                        AddedDate = i.AddedDate,
+                        HomePage = i.HomePage,
+                        Confirmation = i.Confirmation,
+                        Image = i.Image,
+                        CategoryId = i.CategoryId
+                    }).AsQueryable();
+
+            if (string.IsNullOrEmpty("q") == false)
+            {
+                blogs = blogs.Where(i => i.Title.Contains(q) || i.Comment.Contains(q));
+            }
+
+            if (id!=null)
+            {
+                blogs = blogs.Where(i => i.CategoryId == id);
+            }
+
+
+            return View(blogs.ToList());
+        }
+
         // GET: Blog
         public ActionResult Index()
         {

@@ -14,6 +14,7 @@ namespace BlogMvcApp.Controllers
         public ActionResult Index()
         {
             var blogs = context.Blogs
+                                .Where(i => i.Confirmation == true && i.HomePage == true)
                                 .Select(i => new BlogModel()
                                 {
                                     Id = i.Id,
@@ -23,8 +24,8 @@ namespace BlogMvcApp.Controllers
                                     HomePage = i.HomePage,
                                     Confirmation = i.Confirmation,
                                     Image = i.Image
-                                })
-                                .Where(i => i.Confirmation == true && i.HomePage == true);
+                                });
+                                
 
 
             return View(blogs.ToList());

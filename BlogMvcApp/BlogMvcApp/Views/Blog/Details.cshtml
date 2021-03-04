@@ -4,15 +4,77 @@
     ViewBag.Title = "Details";
 }
 
+
 <h1>@Model.Title</h1>
 <hr />
 <p>
     @Model.AddedDate
 </p>
 <hr />
-<img src="~/Content/1.jpg" alt="image" />
+<img src="~/Content/1.jpg" alt="image" style="width:100%" />
 <hr />
 <blockquote>
     <p>@Model.Comment</p>
 </blockquote>
-<p>@Model.Content</p>
+<p>
+    @Model.Content
+</p>
+
+<div class="comment">
+    <hr />
+    <div class="card card-body bg-light">
+        <h4>Leave a comment:</h4>
+        <form role="form">
+            <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <hr />
+
+    <div class="media mb-4 mt-4">
+        <img class="mr-3" src="~/Content/2.png.png" alt="Generic placeholder image" style="width:64px">
+        <div class="media-body">
+            <h5 class="mt-0">Media heading</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+    </div>
+    <div class="media mb-4">
+        <img class="mr-3" src="~/Content/2.png.png" alt="Generic placeholder image" style="width:64px">
+        <div class="media-body">
+            <h5 class="mt-0">Media heading</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+    </div>
+    <div class="media mb-4">
+        <img class="mr-3" src="~/Content/2.png.png" alt="Generic placeholder image" style="width:64px">
+        <div class="media-body">
+            <h5 class="mt-0">Media heading</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+@section RightColumn
+{
+    <div class="card card-body bg-light">
+        <h4>Blog Search</h4>
+        <div class="input-group">
+            <input type="text" class="form-control" />
+            <button class="btn btn-info">
+                search
+            </button>
+        </div>
+    </div>
+
+    @{ Html.RenderAction("CategoryList", "Category");}
+}
+
+
